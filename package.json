@@ -10,14 +10,17 @@
     "build": "webpack --config build/webpack.config.js"
   },
   "dependencies": {
+    "node-sass": "6.0.0",
     "vue": "^3.2.37",
     "vue-router": "^4.1.2",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@vue/cli-plugin-babel": "^5.0.8",
     "@vue/compiler-sfc": "^3.2.37",
-    "babel-core": "6.26.3",
-    "babel-loader": "7.1.5",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.2.5",
     "css-loader": "^6.7.1",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
