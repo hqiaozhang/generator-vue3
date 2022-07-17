@@ -1,12 +1,12 @@
 const path = require('path')
 const webpack = require('webpack')
-const merge = require('webpack-merge')
+const { merge } = require('webpack-merge')
 const common = require('./webpack.common.js')
 const config = require('./base.config')
 const utils = require('./utils')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 // 清理 /dist 文件夹插件
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 // 复制静态文件
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 // 把css从js中分离出来
@@ -18,7 +18,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = merge(common, {
   // 入口
   entry: {
-    main: './src/main.js',
+    main: './src/main.ts',
   },
   mode: 'production', // 生产环境
   // 对调试源码(debug)和运行基准测试(benchmark tests)很有帮助
@@ -72,31 +72,22 @@ module.exports = merge(common, {
               publicPath: `/${config.projectName}/` 
             }
           }, 
-          'css-loader',
-          'postcss-loader',
-          'sass-loader',
-          { loader: 'sass-resources-loader',
-            options: {
-              sourceMap: true,
-              resources: [
-                utils.resolve('src/assets/styles/constant/index.scss')
-              ]
-            }
-          },
+          'css-loader', 
+          'sass-loader', 
         ]
       },
     ]
   },
   plugins: [
     // 构建之前先清里dist文件
-    new CleanWebpackPlugin([config.build.outputPath]),
+    new CleanWebpackPlugin(),
     // new webpack.DllReferencePlugin({
     //   context: path.resolve(__dirname),
     //   manifest: require('./vendor-manifest.json')
     // }),
     new HtmlWebpackPlugin({
       filename: config.build.index,
-      template: './src/index.html',
+      template: './public/index.html',
       // favicon: '/file/view/web/favicon.ico',
       inject: true,  // 向template或者templateContent中注入所有静态资源
       // false就是不使用html压缩
@@ -117,22 +108,24 @@ module.exports = merge(common, {
       chunkFilename: utils.assetsPath('styles/[name].[contenthash:8].css'),
     }),
     // 复制自定义静态资源
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, '../static'),
-        to: config.build.assetsSubDirectory,
-        ignore: ['.*']
-      }
-    ]),
+    new CopyWebpackPlugin({ 
+      patterns: [
+        {
+          from: path.resolve(__dirname, '../static'),
+          to: config.build.assetsSubDirectory, 
+        }
+  ]}),
     //打包
     new FileManagerPlugin({
-      onEnd: {
-        delete: [
-          `./build/${config.projectName}.tar.gz`
-        ],
-        archive: [
-          { source: `./build/dist`, destination: `./build/${config.projectName}.tar.gz` }
-        ]
+      events: {
+        onEnd: {
+          delete: [
+            `./build/${config.projectName}.tar.gz`
+          ],
+          archive: [
+            { source: `./build/dist`, destination: `./build/${config.projectName}.tar.gz` }
+          ]
+        }
       }
     })
   ]

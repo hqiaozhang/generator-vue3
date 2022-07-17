@@ -2,7 +2,7 @@
 
 const path = require('path')
 //项目编译输出目录
-const projectName = 'waste-management'
+const projectName = 'generator-vue3'
 
 module.exports = {
   projectName: projectName,
