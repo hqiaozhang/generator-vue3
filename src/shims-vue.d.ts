@@ -16,6 +16,6 @@ declare module '*.gif' {
 }
 
 // TODO: remove this part after vue-count-to has its typescript file
-declare module 'vue-count-to'
+// declare module 'vue-count-to'
 // TODO: remove this part after vue-image-crop-upload has its typescript file
-declare module 'vue-image-crop-upload'
+// declare module 'vue-image-crop-upload'

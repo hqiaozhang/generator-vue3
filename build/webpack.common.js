@@ -22,7 +22,7 @@ module.exports = {
       : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json', '.css', '.scss'],
+    extensions: ['.js', '.vue', '.json', '.css', '.scss', '.ts', '.tsx'],
     alias: {
       // vue: 'vue/index.js',
       '@': resolve('src'),
