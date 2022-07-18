@@ -14,7 +14,7 @@ import { createRouter, createWebHashHistory} from "vue-router";
 // 首页
 const Home = () => import('@/views/home/index.vue')
  
-const routes = [
+const routes: Array<any> = [
   {
     path: '/:pathMatch(.*)*',
     redirect: `/index`,

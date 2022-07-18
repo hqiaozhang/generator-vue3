@@ -5,14 +5,12 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { defineComponent } from 'vue'
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+
+export default defineComponent({
+
+})
 </script>
 
 <style>

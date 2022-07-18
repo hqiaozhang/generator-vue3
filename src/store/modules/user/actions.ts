@@ -1,3 +1,3 @@
-export const actions: any = {
+export const actions = {
   
 }

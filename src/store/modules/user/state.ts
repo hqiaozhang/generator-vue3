@@ -7,18 +7,18 @@
  */
 import { getCookie } from '@/utils/util'
 
-export interface UserState{
-    token: string
-    userId: string 
-    userName: String
-    fullName: String 
-    roles: string[] 
-}
+// interface UserState{
+//     token: string
+//     userId: string 
+//     userName: String
+//     fullName: String 
+//     roles: string[] 
+// }
 
-export const state: UserState = {
+export const state  = {
   token: getCookie('token') || '',
   userId: '',
   userName: '',
-  fullName: '',  
+  fullName: 'admin',  
   roles: []
 }

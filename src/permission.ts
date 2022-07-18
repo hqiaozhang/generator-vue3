@@ -3,6 +3,7 @@ import {router} from '@/router'
 import { useStore } from 'vuex'
 router.beforeEach(() => {
   const store = useStore()
-  const token = store.state.user.token
+  console.log(store)
+  const token = store.state 
   console.log('token', token)
 })

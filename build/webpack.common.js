@@ -35,10 +35,14 @@ module.exports = {
         use: "vue-loader",
       },
       {
-        test: /\.(ts|js)x?$/,
+        test: /\.js$/,
         exclude: /node_modules/,
         loader: "babel-loader",
       },  
+      { 
+        test: /\.ts$/,
+        loader: "ts-loader" 
+      },
       {
         test: /\.(png|jpe?g|gif|svg|.ico)(\?.*)?$/,
         loader: 'url-loader',

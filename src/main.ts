@@ -1,7 +1,9 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import { router } from './router'
-import './permission'
+import { store } from './store' 
+
+// import './permission'
 
 const app = createApp(App)
-app.use(router).mount('#root')
+app.use(router).use(store).mount('#root')

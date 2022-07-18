@@ -2,7 +2,7 @@
  * 获取Cookie
  * @param {string} key 获取 Cookie
  */
- export function getCookie(key) {
+ export function getCookie(key:string) {
   /*获取cookie参数*/
   let getCookie = document.cookie.replace(/[ ]/g, "");  //获取cookie，并且将获得的cookie格式化，去掉空格字符
   let arrCookie = getCookie.split(";")  //将获得的cookie以"分号"为标识 将cookie保存到arrCookie的数组中
