@@ -1,10 +1,8 @@
 <template>
-  <router-view > </router-view>
-  <!-- <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+  <router-view> </router-view> 
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue'
 
 

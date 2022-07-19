@@ -63,6 +63,15 @@ module.exports = merge(common, {
           { loader: 'style-loader'},
           { loader: 'css-loader', options: { sourceMap: true } }, 
           { loader: 'sass-loader', options: { sourceMap: true } },  
+          { loader: 'sass-resources-loader',
+            options: {
+              sourceMap: true,
+              resources: [
+                utils.resolve('src/assets/styles/_mixins.scss'),
+                utils.resolve('src/assets/styles/_variables.scss')
+              ]
+            }
+          }
         ]
       } 
     ]

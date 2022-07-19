@@ -1,9 +1,11 @@
 import { createStore, createLogger } from 'vuex'
-import { user  } from '@/store/modules/user'
+import { store as user, UserStore, UserState } from '@/store/modules/user'
 
-// export interface RootState { 
-//   user: UserState  
-// }
+export interface RootState { 
+  user: UserState  
+}
+
+export type Store = UserStore<Pick<RootState, 'user'>> 
 
 // Plug in logger when in development environment
 const debug = process.env.NODE_ENV !== 'production'
@@ -16,6 +18,6 @@ export const store = createStore({
   }
 })
 
-// export function useStore(): Store {
-//   return store as Store
-// }
+export function useStore(): Store {
+  return store as Store
+}

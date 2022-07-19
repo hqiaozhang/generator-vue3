@@ -22,9 +22,8 @@ module.exports = {
       : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json', '.css', '.scss', '.ts', '.tsx'],
-    alias: {
-      // vue: 'vue/index.js',
+    extensions: ['.js', '.vue', '.json', '.css', '.scss', '.ts', '.tsx', 'jsx'],
+    alias: { 
       '@': resolve('src'),
     }
   },
@@ -39,9 +38,13 @@ module.exports = {
         exclude: /node_modules/,
         loader: "babel-loader",
       },  
-      { 
-        test: /\.ts$/,
-        loader: "ts-loader" 
+      {
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
+        exclude: /node_modules/,
+        options: {
+          appendTsSuffixTo: [/\.vue$/],
+        }
       },
       {
         test: /\.(png|jpe?g|gif|svg|.ico)(\?.*)?$/,

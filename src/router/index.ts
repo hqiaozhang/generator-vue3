@@ -4,48 +4,40 @@
 * @Email: 634021337@qq.com
 * @Description:
  * @Last Modified by: zhanghongqiao
- * @Last Modified time: 2022-07-11 15:25:33
+ * @Last Modified time: 2022-07-19 16:42:26
 */
  
-import { createRouter, createWebHashHistory} from "vue-router";
-  
+// RouteRecordRaw 基础路由里面增加开发者自定义属性 router.ts的RouteRecordRaw类型校验
+import { createRouter, createWebHashHistory, RouteRecordRaw} from "vue-router"; 
 // 登录
-// const Login = () => import('@/containers/login/index.vue')
+const Login = () => import('@/views/login/index.vue')
 // 首页
 const Home = () => import('@/views/home/index.vue')
  
-const routes: Array<any> = [
+const routes: Array<RouteRecordRaw> = [
+ 
   {
-    path: '/:pathMatch(.*)*',
-    redirect: `/index`,
-    component: Home // 首页
+    path:`/login`, // 登录
+    name: '登录',
+    component: Login,
   },
-  // {
-  //   path:`/login`, // 登录
-  //   name: '登录',
-  //   component: Login,
-  // },
   {
     path:`/index`,  
     name: '首页',
     component: Home,  
   },  
 ]
- 
-// const originalPush = Router.prototype.push
-// Router.prototype.push = function push (location) {
-//   return originalPush.call(this, location).catch(err => err)
-// }
+  
 
-
-// export default new Router({
-//   // mode: 'history',
-//   // base: config.routerPath, 
-//   routes
-// })
-
-export const router = createRouter({
-  history: createWebHashHistory(),
+const router = createRouter({
+  history: createWebHashHistory('generator-vue3'), 
   routes
 })
 
+export function resetRouter() {
+  const newRouter = router;
+  (router as any).matcher = (newRouter as any).matcher // reset router
+}
+
+export default router
+ 
