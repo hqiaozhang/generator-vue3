@@ -48,12 +48,9 @@ module.exports = merge(common, {
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
-          name (module) {
-            // get the name. E.g. node_modules/packageName/not/this/part.js
-            // or node_modules/packageName
-            const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1]
-            // npm package names are URL-safe, but some servers don't like @ symbols
-            return `npm.${packageName.replace('@', '')}`
+          name (module) { 
+            // const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1] 
+            // return `npm.${packageName.replace('@', '')}`
           }
         }
       }
@@ -73,7 +70,16 @@ module.exports = merge(common, {
             }
           }, 
           'css-loader', 
-          'sass-loader', 
+          'sass-loader',
+          { loader: 'sass-resources-loader',
+            options: {
+              sourceMap: true,
+              resources: [
+                utils.resolve('src/assets/styles/_mixins.scss'),
+                utils.resolve('src/assets/styles/_variables.scss')
+              ]
+            }
+          } 
         ]
       },
     ]

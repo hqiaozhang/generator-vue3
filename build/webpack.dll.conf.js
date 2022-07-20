@@ -4,7 +4,7 @@
  * @Date: 2018-10-17 22:54:44 
  * @Description: 提取第三方库到vendor.dll
  * @Last Modified by: zhanghongqiao
- * @Last Modified time: 2020-03-09 11:46:02
+ * @Last Modified time: 2022-07-20 16:54:19
  */
 
 
@@ -12,7 +12,8 @@ const compiler_vendors = [
   'vue',
   'vue-router',
   'lodash',
-  'axios',
+  'element-plus',
+  'vuex'
   // ...其它库
 ];
  

@@ -2,6 +2,7 @@
   .el-input__wrapper {
     background: none;
     border: none;
+    box-shadow: none;
   }
   .el-input {
     display: inline-block;
@@ -69,7 +70,7 @@
     }
   }
 
-  .svg-container {
+  i.iconfont {
     padding: 6px 5px 6px 15px;
     color: $darkGray;
     vertical-align: middle;

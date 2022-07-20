@@ -26,8 +26,7 @@
       :rules="loginRules"
       class="login-form"
       autocomplete="on"
-      label-position="left"
-    >
+      label-position="left" >
       <div class="title-container">
         <h3 class="title">
           系统登录
@@ -35,9 +34,7 @@
       </div>
 
       <el-form-item prop="username">
-        <span class="svg-container">
-          <i class="el-icon-user" /> 
-        </span>
+         <i class="iconfont">&#xe661;</i>
         <el-input
           ref="userNameRef"
           v-model="loginForm.username"
@@ -52,12 +49,9 @@
         v-model="capsTooltip"
         content="Caps lock is On"
         placement="right"
-        manual
-      >
+        manual >
         <el-form-item prop="password">
-          <span class="svg-container">
-            <i class="el-icon-lock" />
-          </span>
+          <i class="iconfont">&#xe777;</i>
           <el-input
             :key="passwordType"
             ref="passwordRef"
@@ -77,7 +71,8 @@
       <el-button
         :loading="loading"
         type="primary"
-        style="width:100%; margin-bottom:30px;" >登录  </el-button>   
+        style="width: 100%"
+        @click.prevent="handleLogin">登录  </el-button>   
     </el-form> 
    </div>
  </template>
@@ -86,22 +81,24 @@
 <script lang="ts">
 import './index.scss'
 import { defineComponent, reactive, ref, toRefs, nextTick } from 'vue'
-
-
+import { useStore } from '@/store'
+import { UserActionTypes } from '@/store/modules/user/action-types'
+import { useRoute, LocationQuery, useRouter } from 'vue-router'
 export default defineComponent({
   setup() {
     const userNameRef = ref(null)
     const passwordRef = ref(null)
     const loginFormRef = ref(null)
-    
+    const store = useStore()
+    const router = useRouter()
     const state = reactive({
       loginForm: {
         username: 'admin',
         password: '111111'
       },
       loginRules: {
-        username: [{ validator: userNameRef, trigger: 'blur' }],
-        password: [{ validator: passwordRef, trigger: 'blur' }]
+        username: [{ validator: userNameRef, trigger: 'blur', required: true, message: '请输入用户名' }],
+        password: [{ validator: passwordRef, trigger: 'blur', required: true, message: '请输入密码' }]
       },
       passwordType: 'password',
       loading: false,
@@ -111,7 +108,7 @@ export default defineComponent({
       otherQuery: {}
     })
 
-    const methods = {
+    const methods = reactive({
       showPwd: () => {
         if (state.passwordType === 'password') {
           state.passwordType = ''
@@ -122,9 +119,20 @@ export default defineComponent({
           (passwordRef.value as any).focus()
         })
       },
-    }
+      handleLogin: () => {
+       (loginFormRef.value as any).validate(async(valid: boolean) => {
+         console.log('======')
+         if (valid) {
+           console.log('state.loginForm====', state.loginForm)
+         }
+       })
+      },
+    })
 
     return {
+       userNameRef,
+      passwordRef,
+      loginFormRef,
       ...toRefs(state),
       ...toRefs(methods)
     }
