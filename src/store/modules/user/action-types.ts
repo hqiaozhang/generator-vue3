@@ -1,10 +1,12 @@
-/*
- * @Description: app actions type
- * @Author: ZY
- * @Date: 2020-12-23 10:25:37
- * @LastEditors: ZY
- * @LastEditTime: 2020-12-25 10:55:13
+ /*
+ * @Author: zhanghongqiao 
+ * @Date: 2022-07-21 09:58:11 
+ * @Email: 991034150@qq.com 
+ * @Description: UserActionTypes
+ * @Last Modified by: zhanghongqiao 
+ * @Last Modified time: 2022-07-21 09:58:11 
  */
+ 
 
 export enum UserActionTypes {
   ACTION_LOGIN = 'ACTION_LOGIN',

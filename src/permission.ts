@@ -1,7 +1,6 @@
 import { RouteLocationNormalized } from 'vue-router'
 import router from './router'
-const whiteList : Array<string> = []
-// import { useStore } from './store'
+const whiteList : Array<string> = ['/login']
 import { useStore } from './store'
 router.beforeEach(async(to: RouteLocationNormalized, _: RouteLocationNormalized, next: any) => {
   const store = useStore() 

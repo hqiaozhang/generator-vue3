@@ -49,8 +49,11 @@ module.exports = merge(common, {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
           name (module) { 
-            // const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1] 
-            // return `npm.${packageName.replace('@', '')}`
+            const context = module.context.match(/[\\/]node_modules[\\/]/)
+            if(context) {
+              const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1] 
+              return `npm.${packageName.replace('@', '')}`
+            } 
           }
         }
       }

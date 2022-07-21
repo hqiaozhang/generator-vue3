@@ -5,7 +5,7 @@
  * @Email: 991034150@qq.com 
  * @Description: Description
  * @Last Modified by: zhanghongqiao
- * @Last Modified time: 2022-07-19 17:57:05
+ * @Last Modified time: 2022-07-21 10:57:44
  */
 -->
 
@@ -81,7 +81,7 @@
 <script lang="ts">
 import './index.scss'
 import { defineComponent, reactive, ref, toRefs, nextTick } from 'vue'
-import { useStore } from '@/store'
+import { useStore } from 'vuex'
 import { UserActionTypes } from '@/store/modules/user/action-types'
 import { useRoute, LocationQuery, useRouter } from 'vue-router'
 export default defineComponent({
@@ -122,8 +122,13 @@ export default defineComponent({
       handleLogin: () => {
        (loginFormRef.value as any).validate(async(valid: boolean) => {
          console.log('======')
-         if (valid) {
-           console.log('state.loginForm====', state.loginForm)
+         if (valid) { 
+           await store.dispatch(UserActionTypes.ACTION_LOGIN, state.loginForm)
+            router
+              .push({
+                path: state.redirect || '/',
+                query: state.otherQuery
+              })
          }
        })
       },

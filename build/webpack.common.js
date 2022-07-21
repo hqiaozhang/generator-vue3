@@ -3,7 +3,10 @@ const config = require('./base.config')
 const utils = require('./utils')
 // 最新的 vue-loader 中，VueLoaderPlugin 插件的位置有所改变
 const { VueLoaderPlugin } = require("vue-loader");
-
+const AutoImport = require('unplugin-auto-import/webpack')
+const Components = require('unplugin-vue-components/webpack')
+const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
+ 
 /**
  * @param {string} dir 目录 
  */
@@ -74,5 +77,11 @@ module.exports = {
   },
   plugins: [
     new VueLoaderPlugin(), // vue-loader插件
+    AutoImport({
+      resolvers: [ElementPlusResolver()],
+    }),
+    Components({
+      resolvers: [ElementPlusResolver()],
+    }),
   ],
 };
